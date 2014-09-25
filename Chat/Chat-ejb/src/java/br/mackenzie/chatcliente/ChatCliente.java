@@ -20,16 +20,16 @@ public class ChatCliente {
         Sala sala2 = new Sala("Sala1");
         try {
             Context context = JNDIUtil.getCORBAInitialContext();
-            Chat chat = (Chat)context.lookup("ChatBeanSingleton");
+            Chat chat = (Chat)context.lookup("java:global/Chat/Chat-ejb/ChatBean");          
             System.out.println("Adicionando Salas");
             chat.criaSala(sala1);
             chat.criaSala(sala2);
                     System.out.println("Escrevendo Sala1");
-                    chat.escreveNaSala(sala1, "Ola");
+                    chat.escreveNaSala(sala1, "Ola\n");
                     chat.escreveNaSala(sala1, "Tubo bem?");
                     System.out.println("Lendo Sala1");
                     System.out.println(chat.retornaTexto(sala1));
-                    System.out.println("Removendo Sala2");
+                    System.out.println("Removendo Sala1");
                     chat.removeSala(sala1);
         } catch(Exception ex) {
             ex.printStackTrace();

@@ -5,7 +5,6 @@
 package br.mackenzie.modelo;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
@@ -13,7 +12,7 @@ import java.util.Objects;
  */
 public class Sala implements Serializable{
     private String nome;
-    private String texto;
+    private String texto = "";
 
     public Sala() {
     }

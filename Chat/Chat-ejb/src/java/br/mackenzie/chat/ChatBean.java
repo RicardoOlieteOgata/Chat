@@ -8,11 +8,13 @@ import br.mackenzie.modelo.Sala;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 
 /**
  *
  * @author Ricardo
  */
+@Startup
 @Singleton
 public class ChatBean implements Chat{    
     private List<Sala> salas = new ArrayList<Sala>();    
