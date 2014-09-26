@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 24/09/2014, 18:53:35
+    Created on : 25/09/2014, 18:38:25
     Author     : Ricardo
 --%>
 
@@ -9,9 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Chat</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Chat</h1>
+        <nav id="nav_bar">
+            <a href="./ChatServlet?opcao=sala.listar">salas</a> |                        
+        </nav>
+
     </body>
 </html>
