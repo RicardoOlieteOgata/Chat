@@ -15,7 +15,7 @@ import javax.ejb.Startup;
  * @author Ricardo
  */
 @Startup
-@Singleton(mappedName = "ChatBeanRemote")
+@Singleton
 public class ChatBean implements Chat{    
     private List<Sala> salas = new ArrayList<Sala>();    
 

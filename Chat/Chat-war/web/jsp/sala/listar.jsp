@@ -24,8 +24,8 @@
         <%               
             ArrayList<Sala> salas = new ArrayList<Sala>();
             salas.clear();
-            salas = (ArrayList<Sala>) request.getAttribute("salas");
-            if (salas != null)            
+            salas = (ArrayList<Sala>) request.getSession().getAttribute("salas");
+            if (request.getSession().getAttribute("salas") != null)            
                  for (Sala sala : salas)
                  {                    
                      out.println(sala.getNome());

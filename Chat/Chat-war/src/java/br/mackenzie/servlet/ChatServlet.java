@@ -44,7 +44,7 @@ public class ChatServlet extends HttpServlet {
         if (request.getParameter("opcao") != null) {
             if ("sala.listar".equalsIgnoreCase(request.getParameter("opcao"))) {            
                 Context context = JNDIUtil.getCORBAInitialContext();
-                Chat chat = (Chat)context.lookup("ChatBeanRemote");          
+                Chat chat = (Chat)context.lookup("java:global/Chat/Chat-ejb/ChatBean");          
                 request.setAttribute("salas", chat.listarSalas());
                 RequestDispatcher view = request.getRequestDispatcher("/jsp/sala/listar.jsp");
                 view.forward(request, response);
@@ -53,14 +53,13 @@ public class ChatServlet extends HttpServlet {
             
             if ("sala.inserir".equalsIgnoreCase(request.getParameter("opcao"))) {
                 Context context = JNDIUtil.getCORBAInitialContext();
-                Chat chat = (Chat)context.lookup("ChatBeanRemote");          
+                Chat chat = (Chat)context.lookup("java:global/Chat/Chat-ejb/ChatBean");          
                 //Sala sala = new Sala();
                 //sala.setNome("sala2");
                 //chat.criaSala(sala);
                 
                 
                 chat.criaSala(new Sala(request.getParameter("nome")));
-                
                 request.getRequestDispatcher("./jsp/sala/inserir.jsp").forward(request, response);
             }
             
