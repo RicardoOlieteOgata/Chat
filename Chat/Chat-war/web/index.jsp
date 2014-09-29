@@ -14,7 +14,7 @@
     <body>
         <h1>Chat</h1>
         <nav id="nav_bar">
-            <a href="./ChatServlet?opcao=sala.listar">salas</a> |                        
+            <a href="./ChatServlet?opcao=sala.listar">salas</a> |   
         </nav>
 
     </body>

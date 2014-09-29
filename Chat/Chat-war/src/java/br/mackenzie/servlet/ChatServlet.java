@@ -44,23 +44,52 @@ public class ChatServlet extends HttpServlet {
         if (request.getParameter("opcao") != null) {
             if ("sala.listar".equalsIgnoreCase(request.getParameter("opcao"))) {            
                 Context context = JNDIUtil.getCORBAInitialContext();
-                Chat chat = (Chat)context.lookup("java:global/Chat/Chat-ejb/ChatBean");          
+                Chat chat = (Chat)context.lookup("ChatBean");          
                 request.setAttribute("salas", chat.listarSalas());
                 RequestDispatcher view = request.getRequestDispatcher("/jsp/sala/listar.jsp");
-                view.forward(request, response);
-                //request.getRequestDispatcher("./jsp/sala/listar.jsp").forward(request, response);               
+                view.forward(request, response);               
             } 
             
-            if ("sala.inserir".equalsIgnoreCase(request.getParameter("opcao"))) {
+            if ("sala.inserir".equalsIgnoreCase(request.getParameter("opcao"))) {                
                 Context context = JNDIUtil.getCORBAInitialContext();
-                Chat chat = (Chat)context.lookup("java:global/Chat/Chat-ejb/ChatBean");          
-                //Sala sala = new Sala();
-                //sala.setNome("sala2");
-                //chat.criaSala(sala);
+                Chat chat = (Chat)context.lookup("ChatBean");        
+                chat.criaSala(new Sala(request.getParameter("nome")));                
+                RequestDispatcher view = request.getRequestDispatcher("./ChatServlet?opcao=sala.listar");                
+                view.forward(request, response);
                 
-                
-                chat.criaSala(new Sala(request.getParameter("nome")));
-                request.getRequestDispatcher("./jsp/sala/inserir.jsp").forward(request, response);
+            }
+            
+             if ("sala.excluir.form".equalsIgnoreCase(request.getParameter("opcao"))) {               
+                Context context = JNDIUtil.getCORBAInitialContext();
+                Chat chat = (Chat)context.lookup("ChatBean");   
+                request.setAttribute("salas", chat.listarSalas());
+                RequestDispatcher view = request.getRequestDispatcher("./jsp/sala/excluir.jsp");                
+                view.forward(request, response);              
+            }
+             
+            if ("sala.excluir".equalsIgnoreCase(request.getParameter("opcao"))) {                
+                Context context = JNDIUtil.getCORBAInitialContext();
+                Chat chat = (Chat)context.lookup("ChatBean");
+                chat.removeSala(new Sala(request.getParameter("sala")));      
+                RequestDispatcher view = request.getRequestDispatcher("./ChatServlet?opcao=sala.listar");                
+                view.forward(request, response);               
+            }
+            
+            if ("sala.entrar.form".equalsIgnoreCase(request.getParameter("opcao"))) {
+                Context context = JNDIUtil.getCORBAInitialContext();
+                Chat chat = (Chat)context.lookup("ChatBean");   
+                request.setAttribute("salas", chat.listarSalas());                
+                RequestDispatcher view = request.getRequestDispatcher("./jsp/sala/entrar.jsp");
+                view.forward(request, response);  
+            }
+            
+            if ("sala.conversar".equalsIgnoreCase(request.getParameter("opcao"))) {
+                Context context = JNDIUtil.getCORBAInitialContext();
+                Chat chat = (Chat)context.lookup("ChatBean");                
+                Sala sala = new Sala(request.getParameter("sala"));                
+                chat.escreveNaSala(sala, request.getParameter("mensagem"));
+                RequestDispatcher view = request.getRequestDispatcher("./jsp/sala/conversar.jsp");
+                view.forward(request, response);          
             }
             
         }        

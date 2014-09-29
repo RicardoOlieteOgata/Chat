@@ -13,19 +13,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Chat</title>
     </head>    
-    <body>
-        <h1>Salas</h1>
+    <body>        
         <nav id="nav_bar">
             <a href="${pageContext.request.contextPath}/index.jsp">principal</a> |
-            <a href="${pageContext.request.contextPath}/ChatServlet?opcao=sala.inserir">criar sala</a> |
-            <a href="${pageContext.request.contextPath}/ChatServlet?opcao=sala.excluir">excluir sala</a> |
-            <a href="${pageContext.request.contextPath}/ChatServlet?opcao=sala.entrar">entrar sala</a> |                        
+            <a href="${pageContext.request.contextPath}/jsp/sala/inserir.jsp">criar sala</a> |
+            <a href="${pageContext.request.contextPath}/ChatServlet?opcao=sala.excluir.form">excluir sala</a> |
+            <a href="${pageContext.request.contextPath}/ChatServlet?opcao=sala.entrar.form">entrar sala</a> |                        
         </nav>
+        <h1>Salas</h1>
         <%               
             ArrayList<Sala> salas = new ArrayList<Sala>();
             salas.clear();
-            salas = (ArrayList<Sala>) request.getSession().getAttribute("salas");
-            if (request.getSession().getAttribute("salas") != null)            
+            salas = (ArrayList<Sala>) request.getAttribute("salas");            
+            if (salas != null)            
                  for (Sala sala : salas)
                  {                    
                      out.println(sala.getNome());

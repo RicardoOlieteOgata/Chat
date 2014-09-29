@@ -12,17 +12,13 @@
         <title>Chat</title>
     </head>
     <body>
-        <nav id="nav_bar">
-            <a href="${pageContext.request.contextPath}/index.jsp">principal</a> |
+         <nav id="nav_bar">
+            <a href="${pageContext.request.contextPath}/index.jsp">principal</a> |        
         </nav>
-
-        <form method="POST" action="${pageContext.request.contextPath}/ChatServlet?opcao=sala.inserir">                        
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome" autofocus required/>
-            <br/>            
-            <input type="submit" />
-            <input type=button onClick="location.href = '${pageContext.request.contextPath}/ChatServlet?opcao=sala.listar'" value='Cancelar'/>
-        </form>
+        <form method="POST" action="${pageContext.request.contextPath}/ChatServlet?opcao=sala.inserir">
+            Nome: <input type="text" name="nome">
+            <input type="submit" value="Criar">
+        </form>       
     </body>
 </html>
 
